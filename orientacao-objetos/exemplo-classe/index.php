@@ -25,18 +25,18 @@ var_dump($usuario);
 
 echo "</pre>"; */
 
-echo "<b>Nome</b>: {$usuario1->nome}<br>";
+echo "<b>Nome</b>: {$usuario1->getNome()}<br>";
 
-echo "<b>E-mail</b>: {$usuario1->email}<br>";
+echo "<b>E-mail</b>: {$usuario1->getEmail()}<br>";
 
-echo "<b>Senha</b>: {$usuario1->senha}<br>";
+echo "<b>Senha</b>: {$usuario1->getSenha()}<br>";
 
 echo "<br>";
 
 echo "Reatribuindo propriedade nome:<br>";
 
-$usuario1->nome = "Maria da Silva";
+$usuario1->setNome("Maria da Silva");
 
-echo "<b>Nome</b>: {$usuario1->nome}<br>";
+echo "<b>Nome</b>: {$usuario1->getNome()}<br>";
 
 ?>
