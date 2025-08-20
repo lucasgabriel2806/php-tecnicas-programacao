@@ -11,7 +11,7 @@
 
         $obj = new $controle();
 
-        $obj->$metodo;
+        
 
     }
     else {
