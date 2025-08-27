@@ -17,8 +17,7 @@
     else {
 
         // rota inicial
-        require_once 
-        "Controllers/InicioController.class.php";
+        require_once "Controllers/InicioController.class.php";
 
         $obj = new InicioController();
 

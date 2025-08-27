@@ -1,10 +1,10 @@
 <?php
 
-class ProdutoController {
+class PetController {
 
     public function listar() {
 
-        echo "Estou no listar do ProdutoController";
+        echo "Estou no listar do PetController";
 
         // conexão com o banco via PDO
         $parametros = "mysql:host=localhost;dbname=exemplo-MVC;charset=utf8mb4";
