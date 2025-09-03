@@ -22,7 +22,7 @@ class UsuarioController {
 
         $erro = false;
 
-
+        // Validação para preeencher campos do formulário
         if ($_POST) {
 
             if(empty($_POST["nome"])){

@@ -2,6 +2,8 @@
 
     if($_GET) {
 
+        var_dump($_GET);
+
         // outras rotas
 
         $controle = $_GET["controle"];
@@ -15,6 +17,8 @@
 
     }
     else {
+
+        var_dump($_GET);
 
         // rota inicial
         require_once "Controllers/InicioController.class.php";
