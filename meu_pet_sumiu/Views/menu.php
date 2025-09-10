@@ -1,9 +1,5 @@
-<?php
-
-    require_once 'Cabecalho.php';
-
+<?php 
+	require_once "cabecalho.php";	
 ?>
-    
-</body>
-
+	</body>
 </html>

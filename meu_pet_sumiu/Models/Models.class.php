@@ -1,10 +1,10 @@
 <?php
 
-abstract class Conexao {
+class Conexao {
 
     public function __construct(protected $db = null) {
 
-        $parametros = "mysql:host=localhost;dbname=meupetsumiu;charset=utf8mb4";
+        $parametros = "mysql:host=localhost;dbname=meu_pet_sumiu;charset=utf8mb4";
 
         try {
 
