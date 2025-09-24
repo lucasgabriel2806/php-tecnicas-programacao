@@ -138,6 +138,7 @@
 		public function esqueci_senha() 
 		{
 			$msg = "";
+			$link = "";
 			$msg_email = "Será enviado um e-mail para recuperar a senha";
 			if($_POST) 
 			{
@@ -159,7 +160,7 @@
 							// enviar email
 							$assunto = "Recuperação de Senha - meu pet sumiu";
 
-							$link = "index.php?controle=UsuarioController&metodo=trocar_senha&id=" . base64_encode($retorno[0]->id_usuario);
+							$link = "http://localhost/exercicios/tecnicas-de-programacao/meu_pet_sumiu/index.php?controle=UsuarioController&metodo=trocar_senha&id=" . base64_encode($retorno[0]->id_usuario);
 
 							$nomeDestino = $retorno[0]->nome;
 							$destino = $retorno[0]->email;
@@ -177,6 +178,7 @@
 							<p>Atenciosamente<br />" . 
 							$nomeRemetente . "</p>";
 							
+							/*
 							$ret = sendMail($assunto, $mensagem, $remetente, $nomeRemetente, $destino, $nomeDestino);
 
 							if($ret)
@@ -187,6 +189,7 @@
 							{
 								$msg_email = "Problema no envio do e-mail de recuperação de senha. Tente mais tarde!!!";
 							}
+							*/
 						}
 						else 
 						{
@@ -202,5 +205,43 @@
 			}
 			require_once "Views/form_email.php";
 		}
-	}//fim da classe
+		public function trocar_senha()
+		{
+			$msg = array("", "");
+			if(isset($_GET["id"]))
+			{
+				$id = base64_decode($_GET["id"]);
+
+				if($_POST["senha"])
+				{
+					$msg[0] = "Senha Obrigatória";
+					$erro = true;
+				}
+				if($_POST["confirmar_senha"])
+				{
+					$msg[1] = "Confirme a senha";
+					$erro = true;
+				}
+				if(!$erro && $_POST["senha"] != $_POST["confirmar_senha"])
+				{
+					$msg[0] = "Senha não são iguais";
+					$erro = true;
+				}
+				if(!$erro)
+				{
+					// alterar senha no BD
+					$usuario = new Usuarios(id_usuario:$_POST["id_usuario"], senha:password_hash($_POST["senha"], PASSWORD_DEFAULT));
+
+					$usuarioDAO = new usuarioDAO();
+
+					$retorno = $usuarioDAO->alterar_senha($usuario);
+
+					header("location: index.php?controle=usuarioController&metodo=login");
+				}
+				}
+				require_once "Views/trocar_senha.php";
+
+			}
+		}
+	//fim da classe
 ?>
