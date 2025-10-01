@@ -15,7 +15,7 @@
     <label for="senha" class="form-label">Senha</label>
     <input type="password" class="form-control" id="senha" name="senha">
   </div>
-  
+
   <div class="col-md-6 text-danger"><?php echo $msg[0];?></div>
   <div class="col-md-6 text-danger"><?php echo $msg[1];?></div>
   <div class="col-12">
