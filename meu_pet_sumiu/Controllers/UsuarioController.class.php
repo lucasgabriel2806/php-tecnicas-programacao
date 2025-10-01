@@ -207,41 +207,41 @@
 		}
 		public function trocar_senha()
 		{
-			$msg = array("", "");
+			$msg = array("","");
+			$erro = false;
 			if(isset($_GET["id"]))
 			{
 				$id = base64_decode($_GET["id"]);
-
-				if($_POST["senha"])
+				if($_POST)
 				{
-					$msg[0] = "Senha Obrigatória";
-					$erro = true;
-				}
-				if($_POST["confirmar_senha"])
-				{
-					$msg[1] = "Confirme a senha";
-					$erro = true;
-				}
-				if(!$erro && $_POST["senha"] != $_POST["confirmar_senha"])
-				{
-					$msg[0] = "Senha não são iguais";
-					$erro = true;
-				}
-				if(!$erro)
-				{
-					// alterar senha no BD
-					$usuario = new Usuarios(id_usuario:$_POST["id_usuario"], senha:password_hash($_POST["senha"], PASSWORD_DEFAULT));
-
-					$usuarioDAO = new usuarioDAO();
-
-					$retorno = $usuarioDAO->alterar_senha($usuario);
-
-					header("location: index.php?controle=usuarioController&metodo=login");
-				}
-				}
+					if(empty($_POST["senha"]))
+					{
+						$msg[0] = "Senha Obrigatória";
+						$erro = true;
+					}
+					if(empty($_POST["confirmar_senha"]))
+					{
+						$msg[1] = "Confirme a senha";
+						$erro = true;
+					}
+					if(!$erro && $_POST["senha"] != $_POST["confirmar_senha"])
+					{
+						$msg[0] = "Senhas não são iguais";
+						$erro = true;
+					}
+					if(!$erro)
+					{
+						//alterar senha no BD
+						$usuario = new Usuarios(id_usuario:$_POST["id_usuario"], senha:password_hash($_POST["senha"], PASSWORD_DEFAULT));
+						
+						$usuarioDAO = new usuarioDAO();
+						
+						$retorno = $usuarioDAO->alterar_senha($usuario);
+						header("location:index.php?controle=usuarioController&metodo=login");
+					}
+				}//post
 				require_once "Views/trocar_senha.php";
-
 			}
 		}
-	//fim da classe
+	}//fim da classe
 ?>
