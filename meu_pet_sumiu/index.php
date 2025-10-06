@@ -22,11 +22,19 @@
 		$obj = new $controle();
 		$obj->$metodo();
 	}
+	/**
+	 * Se eu não fizer nenhuma requisição ($_GET vazia),
+	 * então serei redirecionado para o inicio da aplicação (Rota inicial)
+	 */
 	else
 	{
-		//rota inicial
+		// Chamando inicioController
 		require_once "Controllers/inicioController.class.php";
+		
+		// Instanciando um objeto da classe inicioController
 		$obj = new inicioController();
+
+		// Chamando meu método inicio
 		$obj->inicio();
 	}
 ?>

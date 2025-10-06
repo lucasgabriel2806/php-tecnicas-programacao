@@ -12,7 +12,9 @@
 			//require views formulário
 			if($_POST)
 			{
-				//verificar os dados
+				// Verificando se falta preencher os campos do formulário
+
+				// Se o campo de email estiver vazio
 				if(empty($_POST["email"])) 
 				{
 
@@ -21,6 +23,7 @@
 
 				}
 
+				// Se o campo de senha estiver vazio
 				if(empty($_POST["senha"])) 
 				{
 
@@ -29,12 +32,22 @@
 
 				}
 
+				// Se não houver erro
 				if(!$erro)
 				{
+					// Instanciando um objeto usuario e definindo seu email
 					$usuario = new Usuarios(email:$_POST["email"]);
+
+					/** 
+					 * Abrindo uma conexão com o Banco de Dados através da classe 
+					 * usuarioDAO 
+					 */
 					$usuarioDAO = new usuarioDAO();
+
+					// Armazena o retorno do login (sucesso ou erro)
 					$retorno = $usuarioDAO->login($usuario);
 
+					// Se não for uma mensagem de erro
 					if(is_array($retorno))
 					{
 						if(count($retorno) > 0)
@@ -73,17 +86,26 @@
 			require_once "Views/login.php";
 
 		}//fim do login
+
+
 		public function inserir()
 		{
 			$msg = array("","","","");
 			$erro = false;
+
+			// Se houve envio de formulário (apertou o botão enviar)
 			if($_POST)
 			{
+				// Verificando se os campos estão vázios
+
+				// Se o campo nome estiver vázio
 				if(empty($_POST["nome"]))
 				{
 					$msg[0] = "Preencha o nome";
 					$erro = true;
 				}
+
+				// Se o campo email estiver vázio
 				if(empty($_POST["email"]))
 				{
 					$msg[1] = "Preencha o email";
@@ -104,16 +126,22 @@
 						}
 					}
 				}
+
+				// Se o campo senha estiver vázio
 				if(empty($_POST["senha"]))
 				{
 					$msg[2] = "Preencha o senha";
 					$erro = true;
 				}
+
+				// Se o campo celular estiver vázio
 				if(empty($_POST["celular"]))
 				{
 					$msg[3] = "Preencha o celular";
 					$erro = true;
 				}
+
+				// Se não houve erro ($erro = false)
 				if(!$erro)
 				{
 					$usuario = new Usuarios(0,$_POST["nome"], $_POST["email"], password_hash($_POST["senha"], PASSWORD_DEFAULT), $_POST["celular"]);
@@ -123,6 +151,8 @@
 				}
 				
 			}
+
+			// No fim de tudo ele redireciona para o formulário de login
 			require_once "Views/form_usuario.php";
 		}
 		public function logout()

@@ -1,12 +1,17 @@
 <?php
+
 	class usuarioDAO extends Conexao
 	{
+		// Abre uma conexão com o Banco de Dados
 		public function __construct()
 		{
 			parent:: __construct();
 		}
+
+		// Insere um usuario no Banco de Dados (INSERT INTO)
 		public function inserir($usuario)
 		{
+			// INSERT INTO
 			$sql = "INSERT INTO usuarios (nome, email, senha, celular) VALUES(?,?,?,?)";
 			try
 			{
