@@ -1,17 +1,12 @@
 <?php
-
 	class usuarioDAO extends Conexao
 	{
-		// Abre uma conexão com o Banco de Dados
 		public function __construct()
 		{
 			parent:: __construct();
 		}
-
-		// Insere um usuario no Banco de Dados (INSERT INTO)
 		public function inserir($usuario)
 		{
-			// INSERT INTO
 			$sql = "INSERT INTO usuarios (nome, email, senha, celular) VALUES(?,?,?,?)";
 			try
 			{
@@ -34,10 +29,10 @@
 		}
 		public function login($usuario)
 		{
-
-			$sql = "SELECT nome, id_usuario, email, senha FROM usuarios WHERE email = ?";
+			$sql = "SELECT id_usuario, email, senha, nome FROM usuarios WHERE email = ?";
 			try
 			{
+				
 				$stm = $this->db->prepare($sql);
 				$stm->bindValue(1, $usuario->getEmail());
 				$stm->execute();
@@ -50,23 +45,13 @@
 				$this->db = null;
 				return "Problema ao validar o e-mail";
 			}
-
 		}
-		// public function logout()
-		// {
-		// 	if(!isset($_SESSION))
-		// 	{
-		// 		session_start();
-		// 	}
-		// 	$_SESSION = array();
-		// 	session_destroy();
-		// 	header("location:index.php");
-		// }
 		public function verificar_email($usuario)
 		{
 			$sql = "SELECT email, nome, id_usuario FROM usuarios WHERE email = ?";
 			try
 			{
+				
 				$stm = $this->db->prepare($sql);
 				$stm->bindValue(1, $usuario->getEmail());
 				$stm->execute();
@@ -80,16 +65,14 @@
 				return "Problema ao validar o e-mail";
 			}
 		}
-		public function alterar_senha(Usuarios $usuario)
+		public function alterar_senha($usuario)
 		{
-			$sql = "UPDATE usuarios SET senha = ? WHERE id_usuario = ?";
-
+			$sql = "UPDATE usuarios SET senha = ?  WHERE id_usuario = ?";
 			try
 			{
 				$stm = $this->db->prepare($sql);
 				$stm->bindValue(1, $usuario->getSenha());
 				$stm->bindValue(2, $usuario->getId_usuario());
-
 				$stm->execute();
 				$this->db = null;
 				return "Senha alterada com sucesso";

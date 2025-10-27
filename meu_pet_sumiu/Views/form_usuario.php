@@ -26,19 +26,10 @@
   <div class="col-md-6 text-danger"><?php echo $msg[2];?></div>
   <div class="col-md-6 text-danger"><?php echo $msg[3];?></div>
   <div class="col-12">
-    <button type="submit" class="btn btn-primary" id="btn-cadastrar">Cadastrar</button>
+    <button type="submit" class="btn btn-primary">Enviar</button>
   </div>
 </form>
 </div>
 </div>
-
-  <script>
-
-    const btnCadastrar = document.getElementById("btn-cadastrar");
-
-    
-
-  </script>
-
 </body>
 </html>

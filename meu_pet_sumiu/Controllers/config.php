@@ -9,11 +9,8 @@ use PHPMailer\PHPMailer\SMTP;
 
 function sendMail($assunto, $mensagem, $remetente, $nomeRemetente, $destino, $nomeDestino)
 {
-
-	
 	try
 	{
-
 		$mail = new PHPMailer(true); //INICIA A CLASSE
 
 		$mail->IsSMTP(); //Habilita envio SMTP
@@ -54,7 +51,5 @@ function sendMail($assunto, $mensagem, $remetente, $nomeRemetente, $destino, $no
 	{
 		return false;
 	}
-
 }
-
 ?>
